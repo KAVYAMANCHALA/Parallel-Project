@@ -1,0 +1,72 @@
+package com.cg.bank.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import com.cg.bank.exception.AccountException;
+import com.cg.bank.exception.AmountException;
+import com.cg.bank.exception.NameException;
+import com.cg.bank.exception.PhoneNumberException;
+import com.cg.bank.service.AccountServiceImpl;
+
+public class BankTest {
+	
+	@Test
+	public void ValidateNameTrue() throws NameException{
+		AccountServiceImpl as = new AccountServiceImpl();
+		assertEquals(true, as.validateName("Kavya"));
+	}
+	@Test 
+	public void ValidateName() throws NameException{
+		AccountServiceImpl as = new AccountServiceImpl();
+		assertEquals(false, as.validateName("Keerthi96"));
+		assertEquals(false, as.validateName("Keerthi"));
+		assertEquals(false, as.validateName("Keerthi@#"));
+		assertEquals(false, as.validateName("080946"));
+	}
+	
+	@Test
+	public void ValidatePhonNumberTrue() throws PhoneNoException{
+		AccountServiceImpl as = new AccountServiceImpl();
+		assertEquals(true, as.validatePhoneNo("8179505053"));
+	}
+	
+	@Test
+	public void ValidatePhoneNumber() throws PhoneNumberException{
+		AccountServiceImpl as = new AccountServiceImpl();
+		assertEquals(false, as.validatePhoneNumber("57896"));
+		assertEquals(false, as.validatePhoneNumber("3476890213"));
+		assertEquals(false, as.validatePhoneNumber("3476"));
+		assertEquals(false, as.validatePhoneNumber("testing"));
+		assertEquals(false, as.validatePhoneNumber("@#*%"));
+	}
+	
+	@Test
+	public void ValidateAmountTrue() throws AmountException{
+		AccountServiceImpl bs = new AccountServiceImpl();
+		assertEquals(true, bs.validateAmount("150"));
+	}
+	
+	@Test 
+	public void ValidateAmount() throws AmountException{
+		AccountServiceImpl bs = new AccountServiceImpl();
+		assertEquals(false, bs.validateAmount("0"));
+		assertEquals(false, bs.validateAmount("-100"));
+	}
+	
+	@Test
+	public void ValidateAccountTrue() throws AccountException{
+		AccountServiceImpl bs = new AccountServiceImpl();
+		assertEquals(true, bs.validateAmount("12345"));
+		
+	}
+	@Test 
+	public void ValidateAccount() throws AmountException{
+		AccountServiceImpl bs = new AccountServiceImpl();
+		assertEquals(false, bs.validateAmount("0"));
+		assertEquals(false, bs.validateAmount("-12345"));
+	}
+	
+
+}
